@@ -13,8 +13,12 @@ import edu.eci.cvds.ECISalud.repository.SpecialtyRepository;
 @Service
 public class SpecialtyService {
     
+    private final SpecialtyRepository specialtyRepository;
+    
     @Autowired
-    private SpecialtyRepository specialtyRepository;
+    public SpecialtyService(SpecialtyRepository specialtyRepository) {
+        this.specialtyRepository = specialtyRepository;
+    }
     
     public List<Specialty> getAllSpecialties() {
         return specialtyRepository.findAll();

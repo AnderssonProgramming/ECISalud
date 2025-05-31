@@ -16,11 +16,15 @@ import edu.eci.cvds.ECISalud.repository.SpecialtyRepository;
 
 @Service
 public class AppointmentService {
-    @Autowired
-    private AppointmentRepository appointmentRepository;
+
+    private final AppointmentRepository appointmentRepository;
+    private final SpecialtyRepository specialtyRepository;
     
     @Autowired
-    private SpecialtyRepository specialtyRepository;
+    public AppointmentService(AppointmentRepository appointmentRepository, SpecialtyRepository specialtyRepository) {
+        this.appointmentRepository = appointmentRepository;
+        this.specialtyRepository = specialtyRepository;
+    }
     
     public List<Appointment> getAllAppointments() {
         return appointmentRepository.findAll();
@@ -36,7 +40,9 @@ public class AppointmentService {
 
     public List<Appointment> getAppointmentsByEmailAndStatus(String email, AppointmentStatus status) {
         return appointmentRepository.findByEmailAndStatus(email, status);
-    }    public Appointment createAppointment(AppointmentRequestDTO appointmentRequest) {
+    }
+    
+    public Appointment createAppointment(AppointmentRequestDTO appointmentRequest) {
         // Validate that appointment date is not in the past
         LocalDate currentDate = LocalDate.now();
         if (appointmentRequest.getDate().isBefore(currentDate)) {

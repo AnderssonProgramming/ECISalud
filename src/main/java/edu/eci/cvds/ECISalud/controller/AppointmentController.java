@@ -30,8 +30,12 @@ import jakarta.validation.Valid;
 @Tag(name = "Appointment Controller", description = "API for managing medical appointments")
 public class AppointmentController {
 
+    private final AppointmentService appointmentService;
+    
     @Autowired
-    private AppointmentService appointmentService;
+    public AppointmentController(AppointmentService appointmentService) {
+        this.appointmentService = appointmentService;
+    }
     
     @GetMapping
     @Operation(summary = "Get all appointments", description = "Returns a list of all appointments")

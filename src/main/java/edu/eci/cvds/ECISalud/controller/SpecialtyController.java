@@ -24,8 +24,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Specialty Controller", description = "API for managing medical specialties")
 public class SpecialtyController {
 
+    private final SpecialtyService specialtyService;
+    
     @Autowired
-    private SpecialtyService specialtyService;
+    public SpecialtyController(SpecialtyService specialtyService) {
+        this.specialtyService = specialtyService;
+    }
     
     @GetMapping
     @Operation(summary = "Get all specialties", description = "Returns a list of all available medical specialties")

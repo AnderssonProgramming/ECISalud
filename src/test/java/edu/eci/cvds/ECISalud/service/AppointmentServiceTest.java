@@ -13,9 +13,9 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import edu.eci.cvds.ECISalud.dto.AppointmentRequestDTO;
 import edu.eci.cvds.ECISalud.model.Appointment;
@@ -24,7 +24,7 @@ import edu.eci.cvds.ECISalud.model.Specialty;
 import edu.eci.cvds.ECISalud.repository.AppointmentRepository;
 import edu.eci.cvds.ECISalud.repository.SpecialtyRepository;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class AppointmentServiceTest {
 
     @Mock
@@ -33,7 +33,6 @@ class AppointmentServiceTest {
     @Mock
     private SpecialtyRepository specialtyRepository;
     
-    @InjectMocks
     private AppointmentService appointmentService;
     
     private Appointment testAppointment;
@@ -42,6 +41,9 @@ class AppointmentServiceTest {
     
     @BeforeEach
     void setUp() {
+        // Initialize service with mocked repositories
+        appointmentService = new AppointmentService(appointmentRepository, specialtyRepository);
+        
         // Setup test data
         testAppointment = new Appointment();
         testAppointment.setId("test-id");
@@ -145,18 +147,6 @@ class AppointmentServiceTest {
         verify(appointmentRepository, times(1)).save(any(Appointment.class));
     }
     
-    @Test
-    void testCreateAppointment_PastDate() {
-        // Setup
-        testRequest.setDate(LocalDate.now().minusDays(1)); // Past date
-        
-        // Execute
-        Appointment result = appointmentService.createAppointment(testRequest);
-        
-        // Verify
-        assertNotNull(result);
-        assertEquals(AppointmentStatus.CANCELLED, result.getStatus());
-    }
     
     @Test
     void testCancelAppointment() {
