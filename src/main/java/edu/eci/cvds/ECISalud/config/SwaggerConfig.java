@@ -20,7 +20,7 @@ public class SwaggerConfig {
                         .version("v1.0.0")
                         .contact(new Contact()
                                 .name("ECI Salud Vital")
-                                .url("https://ecisalud.azurewebsites.net")
+                                .url("https://god-fwcafqgvhvbdfthh.canadacentral-01.azurewebsites.net")
                                 .email("contact@ecisalud.com"))
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")));
     }

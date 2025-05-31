@@ -36,16 +36,36 @@ public class AppointmentService {
 
     public List<Appointment> getAppointmentsByEmailAndStatus(String email, AppointmentStatus status) {
         return appointmentRepository.findByEmailAndStatus(email, status);
-    }
-
-    public Appointment createAppointment(AppointmentRequestDTO appointmentRequest) {
+    }    public Appointment createAppointment(AppointmentRequestDTO appointmentRequest) {
+        // Validate that appointment date is not in the past
+        LocalDate currentDate = LocalDate.now();
+        if (appointmentRequest.getDate().isBefore(currentDate)) {
+            Appointment rejectedAppointment = new Appointment();
+            rejectedAppointment.setPatientName(appointmentRequest.getPatientName());
+            rejectedAppointment.setPatientId(appointmentRequest.getPatientId());
+            rejectedAppointment.setEmail(appointmentRequest.getEmail());
+            rejectedAppointment.setDate(appointmentRequest.getDate());
+            rejectedAppointment.setSpecialty(appointmentRequest.getSpecialtyId());
+            rejectedAppointment.setStatus(AppointmentStatus.CANCELLED);
+            return appointmentRepository.save(rejectedAppointment);
+        }
+        
+        // Get specialty details
+        Optional<Specialty> specialtyOpt = specialtyRepository.findById(appointmentRequest.getSpecialtyId());
+        Specialty specialty = specialtyOpt.orElse(null);
+        
         Appointment appointment = new Appointment();
         appointment.setPatientName(appointmentRequest.getPatientName());
         appointment.setPatientId(appointmentRequest.getPatientId());
         appointment.setEmail(appointmentRequest.getEmail());
         appointment.setDate(appointmentRequest.getDate());
         appointment.setSpecialty(appointmentRequest.getSpecialtyId());
-        appointment.setStatus(AppointmentStatus.PENDING);
+        appointment.setStatus(AppointmentStatus.CONFIRMED);
+        
+        if (specialty != null) {
+            appointment.setDoctor(specialty.getDoctor());
+            appointment.setLocation(specialty.getLocation());
+        }
         
         return appointmentRepository.save(appointment);
     }
