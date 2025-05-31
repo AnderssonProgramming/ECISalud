@@ -11,6 +11,8 @@
   [![Java](https://img.shields.io/badge/Java-17-orange.svg)](https://www.oracle.com/java/)
   [![Azure](https://img.shields.io/badge/Azure-Deployed-blue.svg)](https://azure.microsoft.com/)
   [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+  [![JaCoCo](https://img.shields.io/badge/Code%20Coverage-60%25-yellow.svg)](https://www.jacoco.org/jacoco/)
+  [![Swagger](https://img.shields.io/badge/API%20Docs-Swagger-85EA2D.svg)](https://swagger.io/)
   
 </div>
 
