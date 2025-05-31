@@ -1,9 +1,5 @@
-# 🏥 ECISalud - Medical Appointments Management System
-
 <div align="center">
-  
-  ![ECISalud Logo](assets/image.png)
-  
+
   _Author: **Andersson David Sánchez Méndez** - Group 3_
   
   [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.0-brightgreen.svg)](https://spring.io/projects/spring-boot)
@@ -13,6 +9,8 @@
   [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
 </div>
+
+# 🏥 ECISalud - Medical Appointments Management System
 
 ## 📋 Description
 ECISalud is a robust web API for managing medical appointments at ECI Salud Vital clinic. This system allows patients to schedule appointments with specialists, manage their appointments, and provides administrative capabilities for healthcare providers. The system is deployed on Azure and connected to MongoDB Atlas for data persistence.
