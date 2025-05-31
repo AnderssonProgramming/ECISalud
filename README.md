@@ -84,7 +84,7 @@ classDiagram
     AppointmentController ..> AppointmentRequestDTO
     Appointment *-- AppointmentStatus
 ```
-![alt text](image.png)
+![alt text](assets/image.png)
 
 ### Component Diagram
 ```mermaid
@@ -267,13 +267,13 @@ ECISalud/
 
 ## POSTMAN TESTING
 
-![alt text](image-1.png)
+![alt text](assets/image-1.png)
 
-![alt text](image-2.png)
+![alt text](assets/image-2.png)
 
-![alt text](image-3.png)
+![alt text](assets/image-3.png)
 
 
 # Swagger Docs
 
-![alt text](image-4.png)
+![alt text](assets/image-4.png)

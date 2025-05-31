@@ -1,9 +1,9 @@
-name: CI/CD Pipeline test
+name: CI/CD Pipeline production
 
 on:
   pull_request:
     branches:
-      - develop
+      - main
 
 jobs:
   build:
